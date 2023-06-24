@@ -2,6 +2,7 @@
 const coordenadas = {
   "Hospital-das-clinicas": { lat: -23.55725932057201, lon: -46.66799640892738 },
   "João da farmacia": { lat: -23.605932322263662, lon: -47.02627622469074 },
+  "Casa": { lat: -23.648384822358747, lon: -47.00182678512374 },
   "Posto de Combustivel": { lat: -23.609953321569346, lon: -47.007964244530896 }
 };
 
