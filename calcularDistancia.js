@@ -218,5 +218,6 @@ function addDeleteButton(listItem) {
     destinos.splice(index, 1);
     listaDestinos.removeChild(listItem);
     btnMedirKm.disabled = destinos.length < 2;
+    limparSaida();
   });
 }
