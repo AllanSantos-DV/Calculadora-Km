@@ -106,7 +106,7 @@ for (let local in coordenadasHospital) {
 for (let veiculo in carros) {
   const option = document.createElement("option");
   option.value = veiculo;
-  option.textContent = carros[veiculo].nome;
+  option.textContent = carros[veiculo].nome + "Autonomia: " + carros[veiculo].autonomia;
   selectVeiculo.appendChild(option);
 }
 
@@ -162,7 +162,6 @@ btnMedirKm.addEventListener("click", () => {
 
   const carroSelecionado = selectVeiculo.value;
   const autonomiaCarro = carros[carroSelecionado].autonomia;
-document.getElementById("autonomia").innerHTML=autonomiaCarro;
   const litrosNecessarios = distanciaTotal / autonomiaCarro;
   const precoCombustivel = parseFloat(precoCombustivelInput.value);
   const valorAbastecimento = litrosNecessarios * precoCombustivel;
