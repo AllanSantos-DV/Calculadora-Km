@@ -162,6 +162,7 @@ btnMedirKm.addEventListener("click", () => {
 
   const carroSelecionado = selectVeiculo.value;
   const autonomiaCarro = carros[carroSelecionado].autonomia;
+document.getElementById("autonomia").innerHTML=autonomiaCarro;
   const litrosNecessarios = distanciaTotal / autonomiaCarro;
   const precoCombustivel = parseFloat(precoCombustivelInput.value);
   const valorAbastecimento = litrosNecessarios * precoCombustivel;
