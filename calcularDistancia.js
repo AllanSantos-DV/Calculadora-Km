@@ -157,7 +157,7 @@ btnMedirKm.addEventListener("click", () => {
     distanciaTotal += (distancia + (distancia * 0.25));
   }
 
-  const distanciaExtra = Math.floor(distanciaTotal / 100) * 15;
+  const distanciaExtra = Math.floor(distanciaTotal / 50) * 7;
   distanciaTotal += distanciaExtra;
 
   const carroSelecionado = selectVeiculo.value;
