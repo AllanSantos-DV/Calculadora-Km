@@ -106,7 +106,7 @@ for (let local in coordenadasHospital) {
 for (let veiculo in carros) {
   const option = document.createElement("option");
   option.value = veiculo;
-  option.textContent = carros[veiculo].nome + "Autonomia: " + carros[veiculo].autonomia;
+  option.textContent = carros[veiculo].nome + " - Autonomia: " + carros[veiculo].autonomia;
   selectVeiculo.appendChild(option);
 }
 
