@@ -1,3 +1,4 @@
+// Abrir Modal ( Exemplo de Uso )
 window.onload = function() {
   const modalExemplo = new bootstrap.Modal(document.getElementById("modalExemploUso"));
   const naoMostrarMais = localStorage.getItem("naoMostrarMais");
@@ -6,6 +7,7 @@ window.onload = function() {
   }
 }
 
+// seleção para nao mostrar mais o modal ( Exemplo de Uso)
 const naoMostrarMais = document.getElementById("naoMostrarMais");
 naoMostrarMais.addEventListener("click", function() {
   localStorage.setItem("naoMostrarMais", true);
@@ -125,6 +127,13 @@ for (let veiculo in carros) {
   option.textContent = carros[veiculo].nome + " - Autonomia: " + carros[veiculo].autonomia;
   selectVeiculo.appendChild(option);
 }
+
+// Limpar saida ao trocar veiculo e/ou trocar o preco do combustivel
+const selectVeiculoChange = document.querySelector("#veiculo");
+const precoCombustivelChange = document.querySelector('#precoCombustivel');
+selectVeiculoChange.addEventListener("change", limparSaida);
+precoCombustivelChange.addEventListener('change', limparSaida);
+
 
 // Função para lidar com o evento de clique em um botão "Adicionar"
 function adicionarLocal(select, lista) {
