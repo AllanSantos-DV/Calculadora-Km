@@ -1,3 +1,5 @@
+import geolib from 'geolib';
+
 // Abrir Modal ( Exemplo de Uso )
 window.onload = function() {
   const modalExemplo = new bootstrap.Modal(document.getElementById("modalExemploUso"));
@@ -198,21 +200,10 @@ btnMedirKm.addEventListener("click", () => {
 
 // Função para calcular a distância entre duas coordenadas
 function calcularDistancia(lat1, lon1, lat2, lon2) {
-  const raioTerra = 6371; // Raio médio da Terra em quilômetros
-
-  // Converter graus para radianos
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distancia = raioTerra * c;
-
-  return distancia;
+  const localizacao1 = { latitude: lat1, longitude: lon1 };
+  const localizacao2 = { latitude: lat2, longitude: lon2 };
+  const distancia = geolib.getDistance(localizacao1, localizacao2);
+  return distancia / 1000; // Retorna a distância em quilômetros
 }
 
 // Evento de clique no botão "Limpar"
