@@ -1,8 +1,22 @@
-// Coordenadas dos locais
+window.onload = function() {
+  const modalExemplo = new bootstrap.Modal(document.getElementById("modalExemploUso"));
+  const naoMostrarMais = localStorage.getItem("naoMostrarMais");
+  if (!naoMostrarMais) {
+    modalExemplo.show();
+  }
+}
+
+const naoMostrarMais = document.getElementById("naoMostrarMais");
+naoMostrarMais.addEventListener("click", function() {
+  localStorage.setItem("naoMostrarMais", true);
+});
+
+
+// Coordenadas das casas
 const coordenadas = {
-  "João da farmacia/Sandra": { lat: -23.605932322263662, lon: -47.02627622469074 },
-  "Casa": { lat: -23.648384822358747, lon: -47.00182678512374 },
   "Posto de Combustivel": { lat: -23.609953321569346, lon: -47.007964244530896 },
+  "Casa": { lat: -23.648384822358747, lon: -47.00182678512374 },
+  "João da farmacia/Sandra": { lat: -23.605932322263662, lon: -47.02627622469074 },
   "Antonio/Maria madalena Estrada bom jesus 205": { lat: -23.58324393726385, lon: -47.02907351305623 },
   "Necy/Arivaldo rua Jorge amado 20 chácara do carmo": { lat: -23.6209460026032, lon: -47.049088876706314 },
   "Alcino rua Benedito Soares Coelho 61": { lat: -23.593762265646628, lon: -47.02766295056301 },
@@ -38,6 +52,7 @@ const coordenadas = {
   "Flávia rua Maria do carmo novaes 698 capela de São pedro": { lat: -23.58687449537831, lon: -47.00794058766835 }
 };
 
+// Coordenadas dos hospitais
 const coordenadasHospital = {
   "Hospital-Santa-Casa": { lat: -23.543338608786335, lon: -46.64983332216189 },
   "Hospital-Santa-Marcelina": { lat: -23.553964534888532, lon: -46.460888319739354 },
@@ -56,6 +71,7 @@ const coordenadasHospital = {
   "Dante-Pazzanese": { lat: -23.58534681379381, lon: -46.651499673158774 },
   "Ame-Idoso-Sudeste": { lat: -23.593167081080974, lon: -46.636095877344424 },
   "Ame-Barradas": { lat: -23.609701033045855, lon: -46.58968137513807 },
+  "Ame-Maria-Zelia": { lat: -23.531080628922663, lon: -46.59962499070363 },
   "Ame-Bourroul": { lat: -23.549127458951453, lon: -46.64438729335501 },
   "Ame-Taboão": { lat: -23.619451073582997, lon: -46.76976645437811 },
   "Ame-Carapicuiba": { lat: -23.53896622794629, lon: -46.821165347446794 },
@@ -110,43 +126,43 @@ for (let veiculo in carros) {
   selectVeiculo.appendChild(option);
 }
 
-// Evento de clique no botão "Adicionar Casa"
-btnAdicionarCasa.addEventListener("click", () => {
-
+// Função para lidar com o evento de clique em um botão "Adicionar"
+function adicionarLocal(select, lista) {
   limparSaida();
-  const localSelecionado = selectLocalCasa.value;
-  const localNome = selectLocalCasa.options[selectLocalCasa.selectedIndex].text + "  ";
+  const localSelecionado = select.value;
+  const localNome = select.options[select.selectedIndex].text + "  ";
 
   if (localSelecionado) {
     destinos.push(localSelecionado);
     const listItem = document.createElement("li");
     listItem.textContent = localNome;
-    listaDestinos.appendChild(listItem);
+    lista.appendChild(listItem);
     btnMedirKm.disabled = destinos.length < 2;
     addDeleteButton(listItem);
   }
+}
+
+// Evento de clique no botão "Adicionar Casa"
+btnAdicionarCasa.addEventListener("click", () => {
+  adicionarLocal(selectLocalCasa, listaDestinos);
 });
 
 // Evento de clique no botão "Adicionar Hospital"
 btnAdicionarHospital.addEventListener("click", () => {
-  
-  limparSaida();
-  const localSelecionado = selectLocalHospital.value;
-  const localNome = selectLocalHospital.options[selectLocalHospital.selectedIndex].text + "  ";
-
-  if (localSelecionado) {
-    destinos.push(localSelecionado);
-    const listItem = document.createElement("li");
-    listItem.textContent = localNome;
-    listaDestinos.appendChild(listItem);
-    btnMedirKm.disabled = destinos.length < 2;
-    addDeleteButton(listItem);
-  }
+  adicionarLocal(selectLocalHospital, listaDestinos);
 });
 
 // Evento de clique no botão "Medir Km"
 btnMedirKm.addEventListener("click", () => {
+
+  const carroSelecionado = selectVeiculo.value;
+  if (carroSelecionado == "" || precoCombustivelInput.value == "") {
+    alert("Selecione um veiculo e Defina o valor do combustivel")
+    return
+  }
+
   let distanciaTotal = 0;
+
   for (let i = 0; i < destinos.length - 1; i++) {
     const coordenadaAtual = coordenadas[destinos[i]] || coordenadasHospital[destinos[i]];
     const coordenadaProxima = coordenadas[destinos[i + 1]] || coordenadasHospital[destinos[i + 1]];
@@ -160,10 +176,9 @@ btnMedirKm.addEventListener("click", () => {
   const distanciaExtra = Math.floor(distanciaTotal / 50) * 6;
   distanciaTotal += distanciaExtra;
 
-  const carroSelecionado = selectVeiculo.value;
+  const precoCombustivel = parseFloat(precoCombustivelInput.value);
   const autonomiaCarro = carros[carroSelecionado].autonomia;
   const litrosNecessarios = distanciaTotal / autonomiaCarro;
-  const precoCombustivel = parseFloat(precoCombustivelInput.value);
   const valorAbastecimento = litrosNecessarios * precoCombustivel;
   const valorArredondado = Math.ceil(valorAbastecimento / 10) * 10;
 
@@ -199,7 +214,7 @@ btnLimpar.addEventListener("click", () => {
   limparSaida();
 });
 
-// Função para limpara saida ao alterar destinos.
+// Função para limpara saida.
 function limparSaida(){
   resultado.innerHTML = "";
   combustivel.innerHTML = "";
