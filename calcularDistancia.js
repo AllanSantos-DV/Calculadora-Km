@@ -16,9 +16,9 @@ naoMostrarMais.addEventListener("click", function() {
 
 // Coordenadas das casas
 const coordenadas = {
-  "Posto de Combustivel": { lat: -23.609953321569346, lon: -47.007964244530896 },
-  "Casa": { lat: -23.648384822358747, lon: -47.00182678512374 },
-  "João da farmacia/Sandra": { lat: -23.605932322263662, lon: -47.02627622469074 },
+  "Posto de Combustivel - RT43": { lat: -23.609953321569346, lon: -47.007964244530896 },
+  "Allan - Casa": { lat: -23.648384822358747, lon: -47.00182678512374 },
+  "João da farmacia/Sandra - Av Tancredo Neves 576 Jardim Bela Vista": { lat: -23.605932322263662, lon: -47.02627622469074 },
   "Antonio/Maria madalena - Estrada bom jesus 205": { lat: -23.58324393726385, lon: -47.02907351305623 },
   "Necy/Arivaldo - Rua Jorge amado 20 chácara do carmo": { lat: -23.6209460026032, lon: -47.049088876706314 },
   "Alcino - Rua Benedito Soares Coelho 61": { lat: -23.593762265646628, lon: -47.02766295056301 },
@@ -26,7 +26,7 @@ const coordenadas = {
   "Zé frito - Rua Vilma 74 capela de São pedro": { lat: -23.581325055909577, lon: -47.00925687512006 },
   "Rosalina - Rua urca 330 pq agreste": { lat: -23.64697862694154, lon: -47.00241077535817 },
   "Maria aparecida - Rua adriatico 18 jd marialda": { lat: -23.610100257618985, lon: -47.02731696861249 },
-  "Vera - Rua tupi guarani 45 portão vermelho": { lat: -23.60960209780221, lon: -47.006140762946416 },
+  "Vera/Ernani - Rua tupi guarani 45 portão vermelho": { lat: -23.60960209780221, lon: -47.006140762946416 },
   "Alencar - Rua tupi-guarani 128 portao vermelho": { lat: -23.610323024456672, lon: -47.0051684732474 },
   "Sr Pedro/Valquiria - Rua jabaquara 91 - jd mirador": { lat: -23.594126712222845, lon: -47.01429897332854 },
   "Sra. Maria - Rua das amoreiras 170 São judas": { lat: -23.615511727012926, lon: -47.01085086138818 },
@@ -51,7 +51,8 @@ const coordenadas = {
   "Sr Antônio - Rua Alagoas 109 Bela vista": { lat: -23.612251942349033, lon: -47.02091316186551 },
   "Maria Madalena - Rua javaés 295 portão vermelho": { lat: -23.6032928715547, lon: -47.004560152182506 },
   "Sr silas - Departamento de obras": { lat: -23.60162944886569, lon: -47.021320418564606 },
-  "Flávia - Rua Maria do carmo novaes 698 capela de São pedro": { lat: -23.58687449537831, lon: -47.00794058766835 }
+  "Flávia - Rua Maria do carmo novaes 698 capela de São pedro": { lat: -23.58687449537831, lon: -47.00794058766835 },
+  "Lurdes - Rua Noel rosa 07 mirante da mata": { lat: -23.617304521942515, lon: -46.95345066656708 }
 };
 
 // Coordenadas dos hospitais
@@ -77,7 +78,8 @@ const coordenadasHospital = {
   "Ame-Bourroul": { lat: -23.549127458951453, lon: -46.64438729335501 },
   "Ame-Taboão": { lat: -23.619451073582997, lon: -46.76976645437811 },
   "Ame-Carapicuiba": { lat: -23.53896622794629, lon: -46.821165347446794 },
-  "Ame-Itapevi": { lat: -23.542748384317502, lon: -46.93631153259342 }
+  "Ame-Itapevi": { lat: -23.542748384317502, lon: -46.93631153259342 },
+  "CDI-(Centro diagnostico por imagem)": { lat: -23.54780485698698, lon: -46.93228437945552 }
 };
 
 // Carros
@@ -108,9 +110,19 @@ const precoCombustivelInput = document.getElementById("precoCombustivel");
 for (let local in coordenadas) {
   const option = document.createElement("option");
   option.value = local;
-  option.textContent = local.replace(/-/g, " ");
+  const name_endereco = local.split("-");
+  const name = document.createElement("span");
+  name.className = "font-weight-bold";
+  name.textContent = name_endereco[0];
+  const endereco = document.createElement("span");
+  endereco.className = "text-danger";
+  endereco.textContent = " - " + name_endereco[1];
+  option.innerHTML = '';
+  option.appendChild(name);
+  option.appendChild(endereco);
   selectLocalCasa.appendChild(option);
 }
+
 
 // Criação das opções do select hospitais
 for (let local in coordenadasHospital) {
