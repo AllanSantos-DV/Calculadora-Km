@@ -1,7 +1,6 @@
-import geolib from 'geolib';
-
 // Abrir Modal ( Exemplo de Uso )
 window.onload = function() {
+
   const modalExemplo = new bootstrap.Modal(document.getElementById("modalExemploUso"));
   const naoMostrarMais = localStorage.getItem("naoMostrarMais");
   if (!naoMostrarMais) {
@@ -14,7 +13,6 @@ const naoMostrarMais = document.getElementById("naoMostrarMais");
 naoMostrarMais.addEventListener("click", function() {
   localStorage.setItem("naoMostrarMais", true);
 });
-
 
 // Coordenadas das casas
 const coordenadas = {
@@ -177,11 +175,11 @@ btnMedirKm.addEventListener("click", () => {
   for (let i = 0; i < destinos.length - 1; i++) {
     const coordenadaAtual = coordenadas[destinos[i]] || coordenadasHospital[destinos[i]];
     const coordenadaProxima = coordenadas[destinos[i + 1]] || coordenadasHospital[destinos[i + 1]];
-    const distancia = calcularDistancia(
-      coordenadaAtual.lat, coordenadaAtual.lon,
-      coordenadaProxima.lat, coordenadaProxima.lon
+    const distancia = geolib.getDistance(
+      {latitude: coordenadaAtual.lat, longitude: coordenadaAtual.lon},
+      {latitude: coordenadaProxima.lat, longitude: coordenadaProxima.lon}
     );
-    distanciaTotal += (distancia + (distancia * 0.25));
+    distanciaTotal += (distancia + (distancia * 0.4)) / 1000;
   }
 
   const distanciaExtra = Math.floor(distanciaTotal / 50) * 6;
@@ -197,14 +195,6 @@ btnMedirKm.addEventListener("click", () => {
   combustivel.innerHTML = `Serão necessários ${litrosNecessarios.toFixed(2)} litros de combustível.`;
   vale.innerHTML = `O valor do abastecimento será de R$ ${valorArredondado.toFixed(2)}.`;
 });
-
-// Função para calcular a distância entre duas coordenadas
-function calcularDistancia(lat1, lon1, lat2, lon2) {
-  const localizacao1 = { latitude: lat1, longitude: lon1 };
-  const localizacao2 = { latitude: lat2, longitude: lon2 };
-  const distancia = geolib.getDistance(localizacao1, localizacao2);
-  return distancia / 1000; // Retorna a distância em quilômetros
-}
 
 // Evento de clique no botão "Limpar"
 btnLimpar.addEventListener("click", () => {
