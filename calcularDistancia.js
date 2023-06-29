@@ -53,7 +53,7 @@ const coordenadas = {
   "Sr silas - Departamento de obras": { lat: -23.60162944886569, lon: -47.021320418564606 },
   "Flávia - Rua Maria do carmo novaes 698 capela de São pedro": { lat: -23.58687449537831, lon: -47.00794058766835 },
   "Lurdes - Rua Noel rosa 07 mirante da mata": { lat: -23.617304521942515, lon: -46.95345066656708 },
-  "Natália - Rua Santa Ângela 16 Jd. Helena maria": { lat: -23,6086800, lon: -47,0164619 }
+  "Natália - Rua Santa Ângela 16 Jd. Helena maria": { lat: -23.6086800, lon: -47.0164619 }
 };
 
 // Coordenadas dos hospitais
