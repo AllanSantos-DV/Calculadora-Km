@@ -58,8 +58,8 @@ const coordenadas = {
 
 // Coordenadas dos hospitais
 const coordenadasHospital = {
-"Hospital-Estadual-Sapopemba": { lat: -23.6109887, lon: -46.4926859},
-  "Hospital-Santa-Casa": { lat: -23.543338608786335, lon: -46.64983332216189 },
+"Hospital-Estadual-Sapopemba": { lat: -23.6109887, lon: -46.4926859 },
+"Hospital-Santa-Casa": { lat: -23.543338608786335, lon: -46.64983332216189 },
   "Hospital-Santa-Marcelina": { lat: -23.553964534888532, lon: -46.460888319739354 },
   "Hospital-brigadeiro": { lat: -23.5704603292522, lon: -46.651181245547065 },
   "Hospital-São-Paulo": { lat: -23.59742790631287, lon: -46.643741105322135 },
