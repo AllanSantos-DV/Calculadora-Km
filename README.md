@@ -18,7 +18,7 @@ Este é um projeto de calculadora de distância que permite calcular a distânci
 
 ## Como usar
 
-1. Abra o arquivo `index.html` em qualquer navegador web.
+1. Abra o arquivo `index.html`  ou acesse  a [Calculadora](https://allansantos-dv.github.io/Calculadora-Km/) em qualquer navegador web.
 2. Selecione um veículo na lista disponível.
 3. Insira o preço do combustível por litro.
 4. Selecione locais, como casas e hospitais, para adicionar à rota.
