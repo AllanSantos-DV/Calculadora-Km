@@ -53,13 +53,13 @@ const coordenadas = {
   "Sr silas - Departamento de obras": { lat: -23.60162944886569, lon: -47.021320418564606 },
   "Flávia - Rua Maria do carmo novaes 698 capela de São pedro": { lat: -23.58687449537831, lon: -47.00794058766835 },
   "Lurdes - Rua Noel rosa 07 mirante da mata": { lat: -23.617304521942515, lon: -46.95345066656708 },
-"Natália - Rua Santa Ângela 16 Jd. Helena maria": { lat: -23,6086800, lon: -47,0164619 }
+  "Natália - Rua Santa Ângela 16 Jd. Helena maria": { lat: -23,6086800, lon: -47,0164619 }
 };
 
 // Coordenadas dos hospitais
 const coordenadasHospital = {
-"Hospital-Estadual-Sapopemba": { lat: -23.6109887, lon: -46.4926859 },
-"Hospital-Santa-Casa": { lat: -23.543338608786335, lon: -46.64983332216189 },
+  "Hospital-Estadual-Sapopemba": { lat: -23.6109887, lon: -46.4926859 },
+  "Hospital-Santa-Casa": { lat: -23.543338608786335, lon: -46.64983332216189 },
   "Hospital-Santa-Marcelina": { lat: -23.553964534888532, lon: -46.460888319739354 },
   "Hospital-brigadeiro": { lat: -23.5704603292522, lon: -46.651181245547065 },
   "Hospital-São-Paulo": { lat: -23.59742790631287, lon: -46.643741105322135 },
